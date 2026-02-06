@@ -89,27 +89,27 @@
 		<Item class="Camera" referent="RBXA90DCE639B844884B7E60FD42A29A614">
 			<Properties>
 				<CoordinateFrame name="CFrame">
-					<X>42.3205566</X>
-					<Y>27.0643311</Y>
-					<Z>6.49081659</Z>
-					<R00>0.027908653</R00>
-					<R01>-0.517257154</R01>
-					<R02>0.855374873</R02>
-					<R10>9.31322575e-10</R10>
-					<R11>0.855708241</R11>
-					<R12>0.517458677</R12>
-					<R20>-0.999610543</R20>
-					<R21>-0.014441574</R21>
-					<R22>0.0238816626</R22>
+					<X>41.6318588</X>
+					<Y>27.4574471</Y>
+					<Z>-2.60769939</Z>
+					<R00>-0.0418852791</R00>
+					<R01>-0.713392079</R01>
+					<R02>0.699512303</R02>
+					<R10>-0</R10>
+					<R11>0.700126767</R11>
+					<R12>0.714018643</R12>
+					<R20>-0.9991225</R20>
+					<R21>0.0299068708</R21>
+					<R22>-0.0293250009</R22>
 				</CoordinateFrame>
 				<Ref name="CameraSubject">null</Ref>
 				<token name="CameraType">0</token>
 				<float name="FieldOfView">70</float>
 				<token name="FieldOfViewMode">0</token>
 				<CoordinateFrame name="Focus">
-					<X>40.6098061</X>
-					<Y>26.0294132</Y>
-					<Z>6.44305325</Z>
+					<X>40.2328339</X>
+					<Y>26.0294094</Y>
+					<Z>-2.54904938</Z>
 					<R00>1</R00>
 					<R01>0</R01>
 					<R02>0</R02>
@@ -348,6 +348,107 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 				<int64 name="SourceAssetId">-1</int64>
 				<BinaryString name="Tags"></BinaryString>
 				<UniqueId name="UniqueId">17c1cd0abfaf3367098ee0d40000039c</UniqueId>
+			</Properties>
+		</Item>
+		<Item class="Part" referent="RBX063988F044E8456D929B9C0A0C4DFFD4">
+			<Properties>
+				<token name="shape">1</token>
+				<token name="formFactorRaw">1</token>
+				<bool name="Anchored">false</bool>
+				<bool name="AudioCanCollide">true</bool>
+				<float name="BackParamA">-0.5</float>
+				<float name="BackParamB">0.5</float>
+				<token name="BackSurface">0</token>
+				<token name="BackSurfaceInput">0</token>
+				<float name="BottomParamA">-0.5</float>
+				<float name="BottomParamB">0.5</float>
+				<token name="BottomSurface">0</token>
+				<token name="BottomSurfaceInput">0</token>
+				<CoordinateFrame name="CFrame">
+					<X>-12</X>
+					<Y>0.5</Y>
+					<Z>-17.5</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<bool name="CanCollide">true</bool>
+				<bool name="CanQuery">true</bool>
+				<bool name="CanTouch">true</bool>
+				<bool name="CastShadow">true</bool>
+				<string name="CollisionGroup">Default</string>
+				<int name="CollisionGroupId">0</int>
+				<Color3uint8 name="Color3uint8">4288914085</Color3uint8>
+				<PhysicalProperties name="CustomPhysicalProperties">
+					<CustomPhysics>false</CustomPhysics>
+				</PhysicalProperties>
+				<bool name="EnableFluidForces">true</bool>
+				<float name="FrontParamA">-0.5</float>
+				<float name="FrontParamB">0.5</float>
+				<token name="FrontSurface">0</token>
+				<token name="FrontSurfaceInput">0</token>
+				<float name="LeftParamA">-0.5</float>
+				<float name="LeftParamB">0.5</float>
+				<token name="LeftSurface">0</token>
+				<token name="LeftSurfaceInput">0</token>
+				<bool name="Locked">false</bool>
+				<bool name="Massless">false</bool>
+				<token name="Material">256</token>
+				<string name="MaterialVariantSerialized"></string>
+				<CoordinateFrame name="PivotOffset">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+					<R00>1</R00>
+					<R01>0</R01>
+					<R02>0</R02>
+					<R10>0</R10>
+					<R11>1</R11>
+					<R12>0</R12>
+					<R20>0</R20>
+					<R21>0</R21>
+					<R22>1</R22>
+				</CoordinateFrame>
+				<float name="Reflectance">0</float>
+				<float name="RightParamA">-0.5</float>
+				<float name="RightParamB">0.5</float>
+				<token name="RightSurface">0</token>
+				<token name="RightSurfaceInput">0</token>
+				<int name="RootPriority">0</int>
+				<Vector3 name="RotVelocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<float name="TopParamA">-0.5</float>
+				<float name="TopParamB">0.5</float>
+				<token name="TopSurface">0</token>
+				<token name="TopSurfaceInput">0</token>
+				<float name="Transparency">0</float>
+				<Vector3 name="Velocity">
+					<X>0</X>
+					<Y>0</Y>
+					<Z>0</Z>
+				</Vector3>
+				<Vector3 name="size">
+					<X>4</X>
+					<Y>1</Y>
+					<Z>99</Z>
+				</Vector3>
+				<BinaryString name="AttributesSerialize"></BinaryString>
+				<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+				<bool name="DefinesCapabilities">false</bool>
+				<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+				<string name="Name">Part</string>
+				<int64 name="SourceAssetId">-1</int64>
+				<BinaryString name="Tags"></BinaryString>
+				<UniqueId name="UniqueId">2652c36c50756e8d099799dd00000f61</UniqueId>
 			</Properties>
 		</Item>
 	</Item>
@@ -856,6 +957,24 @@ gcLgc4RKxr21zq2UlJSM]]></BinaryString>
 					<BinaryString name="Tags"></BinaryString>
 					<UniqueId name="UniqueId">17c1cd0abfaf3367098ee0d40000039a</UniqueId>
 				</Properties>
+				<Item class="LocalScript" referent="RBX046FE209C135496FB35559765837AEE8">
+					<Properties>
+						<ProtectedString name="Source"><![CDATA[print "hey"
+]]></ProtectedString>
+						<bool name="Disabled">false</bool>
+						<Content name="LinkedSource"><null></null></Content>
+						<token name="RunContext">0</token>
+						<string name="ScriptGuid">{85E735D8-FC21-4314-B338-2553737F22E0}</string>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+						<bool name="DefinesCapabilities">false</bool>
+						<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+						<string name="Name">script</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">2652c36c50756e8d099799dd0000114f</UniqueId>
+					</Properties>
+				</Item>
 			</Item>
 		</Item>
 		<Item class="StarterCharacterScripts" referent="RBXED1394F46BB74FB39319CE248D526381">
@@ -1199,6 +1318,42 @@ end
 				<BinaryString name="Tags"></BinaryString>
 				<UniqueId name="UniqueId">17c1cd0abfaf3367098ee0d400000397</UniqueId>
 			</Properties>
+			<Item class="Folder" referent="RBXC2A6C31AF2B44889B98E6AA02DC31056">
+				<Properties>
+					<BinaryString name="AttributesSerialize"></BinaryString>
+					<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+					<bool name="DefinesCapabilities">false</bool>
+					<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+					<string name="Name">~</string>
+					<int64 name="SourceAssetId">-1</int64>
+					<BinaryString name="Tags"></BinaryString>
+					<UniqueId name="UniqueId">2652c36c50756e8d099799dd00000d5e</UniqueId>
+				</Properties>
+				<Item class="Folder" referent="RBXCC54B6DA0699425DB4496A30A44F7769">
+					<Properties>
+						<BinaryString name="AttributesSerialize"></BinaryString>
+						<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+						<bool name="DefinesCapabilities">false</bool>
+						<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+						<string name="Name">.vim</string>
+						<int64 name="SourceAssetId">-1</int64>
+						<BinaryString name="Tags"></BinaryString>
+						<UniqueId name="UniqueId">2652c36c50756e8d099799dd00000d5f</UniqueId>
+					</Properties>
+					<Item class="Folder" referent="RBX48C01C45E5484143AAFCF206ACDF50EB">
+						<Properties>
+							<BinaryString name="AttributesSerialize"></BinaryString>
+							<SecurityCapabilities name="Capabilities">0</SecurityCapabilities>
+							<bool name="DefinesCapabilities">false</bool>
+							<UniqueId name="HistoryId">00000000000000000000000000000000</UniqueId>
+							<string name="Name">undo</string>
+							<int64 name="SourceAssetId">-1</int64>
+							<BinaryString name="Tags"></BinaryString>
+							<UniqueId name="UniqueId">2652c36c50756e8d099799dd00000d60</UniqueId>
+						</Properties>
+					</Item>
+				</Item>
+			</Item>
 		</Item>
 	</Item>
 	<Item class="ServerStorage" referent="RBXDD79A3358771412D800A5CCA72F25D67">
