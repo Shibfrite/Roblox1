@@ -1,0 +1,36 @@
+In luau there are multiple kinds of files.
+Scripts, moduleScripts and localScripts.
+
+Scripts and localScripts are executed at start.
+moduleScripts require one of the others to call them.
+To do that the require function is called.
+This function will return what is returned in the called file.
+
+Scripts run on server side and local side.
+Local Scripts are used for user-specific services.
+The Server Scripts handle everything else.
+
+Code notes:
+
+For module creation Instantiation and initialisation are split.
+Instantiation is the process of creation of the component.
+Initialisation is the starting of it's logic.
+
+We use templates for models.
+templates contain the default data of a model.
+A Cframe is a data structure containing the model's coordinates and angle in 3D.
+
+An instance can be anything. Script, part, model, etc.
+
+Lua uses extensively tables as the most basic data structure.
+an empty table is defined as {}.
+
+A metatable is what defines custom behaviors for a table.
+__index makes a table search for a key it doesn't have.
+This makes tables able to access methods from other tables.
+Alike inheritance.
+
+Code structure:
+
+A Tycoon is the entire structure that a player plays in.
+It is composed itself of different "modules", that we can call "parts"

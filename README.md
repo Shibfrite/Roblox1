@@ -15,3 +15,22 @@ rojo serve
 ```
 
 For more help, check out [the Rojo documentation](https://rojo.space/docs).
+
+## Project information
+This is the first Roblox game made by Shifrite (aka makurek) and AimerGraille
+As we are both junior developers discovering Lua, we will be following different guides for the beginning.
+For my part I will heavily comment the code for our own sake.
+
+## References
+[insert guides links]
+
+## Tools used
+Rojo
+Gitithub
+Git 
+Lazy.vim
+Visual studio code
+
+## AI usage
+AI was used solely for information's sake.
+No code was generated but we learned using it.
