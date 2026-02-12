@@ -4,6 +4,7 @@
 
 --Would be nice to get ride of this line, if it's used only once it shouldn't be global
 local tycoonTemplate = game:GetService("ServerStorage").tycoonTemplate
+local tycoonStorage = game:GetService("ServerStorage").tycoonStorage
 local CollectionService = game:GetService("CollectionService")
 local componentFolder = script.Parent.Components
 
@@ -27,16 +28,51 @@ function Tycoon.new(player)
   local self = setmetatable({}, Tycoon)
   self.Owner = player
 
+  self._topicEvent = Instance.new("BindableEvent")
   return self
 end
 
 --[[
 --Initialisation of a Tycoon.
+--After 3 scnds it triggers ...
 --]]
 function Tycoon:Init()
   self.Model = NewModel(tycoonTemplate, CFrame.new(0, 1, 0))
 
-  self:AddComponents(self.Model.Part)
+  self:SetupComponents()
+
+  task.wait(3)
+  self:PublishTopic("Button", "BasicPart")
+end
+
+--[[
+--Locks every component with the Unlockable tag and adds the rest to the tycoon.
+--]]
+function Tycoon:SetupComponents()
+  for _, instance in ipairs(self.Model:GetDescendants()) do
+    if CollectionService:HasTag(instance, "Unlockable") then
+      self:Lock(instance)
+    else
+      self:AddComponents(instance)
+    end
+  end
+end
+
+--[[
+--Creates and locks a component within tycoonStorage
+--]]
+function Tycoon:Lock(instance)
+  instance.Parent = tycoonStorage
+  self:CreateComponent(instance, componentFolder.Unlockable)
+end
+
+--[[
+--Gets a component from the storage to the tycoon, unlocking it.
+--]]
+function Tycoon:Unlock(instance, id)
+  CollectionService:RemoveTag(instance, "Unlockable")
+  self:AddComponents(instance)
+  instance.Parent = self.Model
 end
 
 --[[
@@ -52,11 +88,31 @@ function Tycoon:AddComponents(taggedInstance)
 end
 
 --[[
+--Sends a signal with a specific topicName.
+--]]
+function Tycoon:PublishTopic(topicName, ...)
+  self._topicEvent:Fire(topicName, ...)
+end
+
+--[[
+--Catches a signal withh a specifc topicName and executes the given callback function.
+--]]
+function Tycoon:SubscribeTopic(topicName, callback)
+  local connection = self._topicEvent.Event:Connect(function(name, ...)
+    if name == topicName then
+      callback(...)
+    end
+  end)
+  return connection
+end
+
+--[[
 --Instantiate and initialise a component through it's script.
 --]]
 function Tycoon:CreateComponent(sourceInstance, componentScript)
   local compModule = require(componentScript)
   local newComp = compModule.new(self, sourceInstance)
+  self._topicEvent:Destroy()
   newComp:Init()
 end
 

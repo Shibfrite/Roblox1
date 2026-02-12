@@ -12,23 +12,42 @@ The Server Scripts handle everything else.
 
 Code notes:
 
+An instance can be anything. Script, part, model, etc.
+
+# Instantiation & Initialisation
 For module creation Instantiation and initialisation are split.
 Instantiation is the process of creation of the component.
 Initialisation is the starting of it's logic.
 
+# Models
 We use templates for models.
 templates contain the default data of a model.
 A Cframe is a data structure containing the model's coordinates and angle in 3D.
 
-An instance can be anything. Script, part, model, etc.
-
+# Tables
 Lua uses extensively tables as the most basic data structure.
 an empty table is defined as {}.
 
+# metatables
 A metatable is what defines custom behaviors for a table.
 __index makes a table search for a key it doesn't have.
 This makes tables able to access methods from other tables.
 Alike inheritance.
+Use setmetatable(destination, origin) to set a metatable.
+It returns the metatable we assign it to.
+
+# Events
+An event makes several scripts able to communicate in real time through signals.
+:Fire(...) will send a signal.
+.Event:Connect(function) will catch a fired signal.
+
+## Subscribe, Publish, Topic
+A topic is a channel categorising messages.
+A pubblisher broadcasts a message with a specific topic.
+A Subscriber catches and reacts to the messages from the topic he's listening for.
+
+## BindableEvent
+A Bindable event is limited to same-side scripts. (only local or only on the server)
 
 Code structure:
 
