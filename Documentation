@@ -1,3 +1,6 @@
+# Lua
+
+# Scripts
 In luau there are multiple kinds of files.
 Scripts, moduleScripts and localScripts.
 
@@ -10,14 +13,14 @@ Scripts run on server side and local side.
 Local Scripts are used for user-specific services.
 The Server Scripts handle everything else.
 
-Code notes:
-
+# Instances
 An instance can be anything. Script, part, model, etc.
 
-# Instantiation & Initialisation
+# Instantiation, Initialisation, Construction
 For module creation Instantiation and initialisation are split.
 Instantiation is the process of creation of the component.
 Initialisation is the starting of it's logic.
+Construction encompases both. (I made it up)
 
 # Models
 We use templates for models.
@@ -49,7 +52,24 @@ A Subscriber catches and reacts to the messages from the topic he's listening fo
 ## BindableEvent
 A Bindable event is limited to same-side scripts. (only local or only on the server)
 
+# Leaderboard
+The leaderboard is a UI showing any state we want.
+
 Code structure:
 
 A Tycoon is the entire structure that a player plays in.
 It is composed itself of different "modules", that we can call "parts"
+
+File structure:
+./:                         Root of the project.
+  Documentation:            Text document explaining Lua concepts. 
+                            (some info should be extracted to the README.md)
+  README.md:                Text document explaining project design.
+  Roblox1.rbxlx:            File containing the actual Roblox project.
+  Roblox1.rbxlx.lock:       No idea what's this thing
+  Default.project.json:     File used by rojo to map the files to the project.
+  sourcemap.json:           Same idea, idk what created the file though.
+  src/:                     Folder containing folder that are mapped to the project.
+    ServerScriptService/:   Folder containing server scripts
+    StarterPlayerScripts/:  Folder containing client scripts
+    ServerScriptService/:   Folder containing shared scripts

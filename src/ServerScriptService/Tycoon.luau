@@ -9,7 +9,7 @@ local CollectionService = game:GetService("CollectionService")
 local componentFolder = script.Parent.Components
 
 --[[
---Uses the template of a model to create a copy of it
+--Uses the template of a model to construct a copy of it
 --]]
 local function NewModel(modelTemplate, cframeOfTemplate)
   local newModel = modelTemplate:Clone()
@@ -40,9 +40,6 @@ function Tycoon:Init()
   self.Model = NewModel(tycoonTemplate, CFrame.new(0, 1, 0))
 
   self:SetupComponents()
-
-  task.wait(3)
-  self:PublishTopic("Button", "BasicPart")
 end
 
 --[[
@@ -59,11 +56,11 @@ function Tycoon:SetupComponents()
 end
 
 --[[
---Creates and locks a component within tycoonStorage
+--constructs and locks a component within tycoonStorage
 --]]
 function Tycoon:Lock(instance)
   instance.Parent = tycoonStorage
-  self:CreateComponent(instance, componentFolder.Unlockable)
+  self:constructComponent(instance, componentFolder.Unlockable)
 end
 
 --[[
@@ -76,13 +73,13 @@ function Tycoon:Unlock(instance, id)
 end
 
 --[[
---Creates each component from an instance that has a corresponding tag.
+--constructs each component from an instance that has a corresponding tag.
 --]]
 function Tycoon:AddComponents(taggedInstance)
   for _, tag in ipairs(CollectionService:GetTags(taggedInstance)) do
     local component = componentFolder:FindFirstChild(tag)
     if component then
-      self:CreateComponent(taggedInstance, component)
+      self:constructComponent(taggedInstance, component)
     end
   end
 end
@@ -109,16 +106,16 @@ end
 --[[
 --Instantiate and initialise a component through it's script.
 --]]
-function Tycoon:CreateComponent(sourceInstance, componentScript)
+function Tycoon:constructComponent(sourceInstance, componentScript)
   local compModule = require(componentScript)
   local newComp = compModule.new(self, sourceInstance)
-  self._topicEvent:Destroy()
   newComp:Init()
 end
 
 --Destroyes a Tycoon gracefully.
 function Tycoon:Destroy()
   self.Model:Destroy()
+  self._topicEvent:Destroy()
 end
 
 return Tycoon
