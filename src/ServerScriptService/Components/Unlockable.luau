@@ -2,13 +2,12 @@
 --File responsible for managing unlockable components
 --]]
 local Unlockable = {}
-Unlockable.__index = Unlockable
 
 --[[
 --Instantiation of the component.
 --]]
 function Unlockable.new(tycoon, sourceInstance)
-  local self = setmetatable({}, Unlockable)
+  local self = {}
   self.Tycoon = tycoon
   self.SourceInstance = sourceInstance
   return self

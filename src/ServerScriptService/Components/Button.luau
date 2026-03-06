@@ -4,13 +4,12 @@
 
 local PlayerManager = require(script.Parent.Parent.PlayerManager)
 local Button = {}
-Button.__index = Button
 
 --[[
 --Instantiation of the component.
 --]]
 function Button.new(tycoon, sourcePart)
-  local self = setmetatable({}, Button)
+  local self = {}
   self.Tycoon = tycoon
   self.SourcePart = sourcePart
   return self
