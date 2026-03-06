@@ -1,5 +1,8 @@
 # Lua
 
+# Instances
+An instance can be anything. Script, part, model, etc.
+
 # Scripts
 In luau there are multiple kinds of files.
 Scripts, moduleScripts and localScripts.
@@ -13,31 +16,10 @@ Scripts run on server side and local side.
 Local Scripts are used for user-specific services.
 The Server Scripts handle everything else.
 
-# Instances
-An instance can be anything. Script, part, model, etc.
-
 # Instantiation, Initialisation, Construction
-For module creation Instantiation and initialisation are split.
 Instantiation is the process of creation of the component.
 Initialisation is the starting of it's logic.
 Construction encompases both. (I made it up)
-
-# Models
-We use templates for models.
-templates contain the default data of a model.
-A Cframe is a data structure containing the model's coordinates and angle in 3D.
-
-# Tables
-Lua uses extensively tables as the most basic data structure.
-an empty table is defined as {}.
-
-# metatables
-A metatable is what defines custom behaviors for a table.
-__index makes a table search for a key it doesn't have.
-This makes tables able to access methods from other tables.
-Alike inheritance.
-Use setmetatable(destination, origin) to set a metatable.
-It returns the metatable we assign it to.
 
 # Events
 An event makes several scripts able to communicate in real time through signals.
@@ -52,15 +34,75 @@ A Subscriber catches and reacts to the messages from the topic he's listening fo
 ## BindableEvent
 A Bindable event is limited to same-side scripts. (only local or only on the server)
 
+# Services
+Services are global singleton objects provided by Roblox.
+Accessed via "game:GetService(ServiceName)".
+
+## Players service
+The event starting when a player joins is ".PlayerAdded"
+To get all players ":GetPlayers()"
+
+# Attributes
+Attributes are variables stored in an instance.
+Accessed via "instance:GetAttribute(AttributeName)"
+
+# Parts
+Parts are 3D physical objects.
+
+# Players
+Players are the object containing an individual's data
+
+## Characters
+Player's 3D models.
+
+# Models
+A model is a group of instances.
+
+# CFrames
+Cframes are a data structure containing the model's coordinates and angle in 3D.
+
+# Templates
+Pre-made objects stored and cloned at runtime to create new instances.
+
+# Cloning
+Duplicating any instance can be done using "instance:Clone(void)"
+
+# Tables
+Lua uses extensively tables as the most basic data structure.
+an empty table is defined as "{}".
+
+## Metatables
+A metatable is what defines custom behaviors for a table.
+__index makes a table search for a key it doesn't have.
+This makes tables able to access methods from other tables.
+Alike inheritance.
+To set a metatable use "setmetatable(destination, origin)".
+It returns the metatable we assign it to.
+
+# Folders
+We can search an instance in a folder using "folder[key]".
+The key being the name of the instance we're looking for.
+
 # Leaderboard
 The leaderboard is a UI showing any state we want.
 
-Code structure:
+# Threads
+Threads are executions of code running in parallel to the main program.
+The table used for threads is "coroutine".
+".create" makes a new thread.
+".wrap(function)" makes a new thread for the given function.
 
+# For loops
+For loops can iterate over a table, taking a table's value at each step.
+To get the index and the value we can use "for key, value in ipairs(table)".
+To ignore one replace it by "_".
+
+
+# Code structure
 A Tycoon is the entire structure that a player plays in.
 It is composed itself of different "modules", that we can call "parts"
 
-File structure:
+# File structure
 ./:                         Root of the project.
   Documentation:            Text document explaining Lua concepts. 
                             (some info should be extracted to the README.md)

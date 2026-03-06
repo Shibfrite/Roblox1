@@ -2,12 +2,13 @@ local dropsFolder = game:GetService("ServerStorage").Drops
 local Debris = game:GetService("Debris")
 
 local Dropper = {}
+Dropper.__index = Dropper
 
 --[[
 --Instantiation of the component.
 --]]
 function Dropper.new(tycoon, sourcePart)
-  local self = {}
+  local self = setmetatable({}, Dropper)
   self.Tycoon = tycoon
   self.SourcePart = sourcePart
   self.Rate = sourcePart:GetAttribute("Rate")

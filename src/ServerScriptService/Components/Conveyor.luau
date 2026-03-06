@@ -1,10 +1,11 @@
 local Conveyor = {}
+Conveyor.__index = Conveyor
 
 --[[
 --Instantiation of the component.
 --]]
 function Conveyor.new(tycoon, sourcePart)
-  local self = {}
+  local self = setmetatable({}, Conveyor)
   self.SourcePart = sourcePart
   self.Speed = sourcePart:GetAttribute("Speed")
   return self

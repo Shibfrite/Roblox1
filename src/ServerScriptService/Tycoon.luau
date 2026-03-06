@@ -1,12 +1,10 @@
---[[
---File managing the tycoons
---]]
-
 --Would be nice to get ride of this line, if it's used only once it shouldn't be global
 local tycoonTemplate = game:GetService("ServerStorage").tycoonTemplate
 local tycoonStorage = game:GetService("ServerStorage").tycoonStorage
 local CollectionService = game:GetService("CollectionService")
 local componentFolder = script.Parent.Components
+local PlayerManager = require(script.Parent.PlayerManager)
+local playerManager = require(script.Parent.PlayerManager)
 
 --[[
 --Uses the template of a model to construct a copy of it
@@ -24,22 +22,27 @@ Tycoon.__index = Tycoon
 --[[
 --Instantiation of a Tycoon.
 --]]
-function Tycoon.new(player)
+function Tycoon.new(player, spawnPoint)
   local self = setmetatable({}, Tycoon)
   self.Owner = player
 
   self._topicEvent = Instance.new("BindableEvent")
+  self._spawn = spawnPoint
   return self
 end
 
 --[[
 --Initialisation of a Tycoon.
---After 3 scnds it triggers ...
+--Creates a Tycoon at a spawn point, making it the Owner's spawnCreates a Tycoon at a spawn point, making it the Owner's spawn.
 --]]
 function Tycoon:Init()
-  self.Model = NewModel(tycoonTemplate, CFrame.new(0, 1, 0))
+  self.Model = NewModel(tycoonTemplate, self._spawn.CFrame)
+  self._spawn:SetAttribute("Occupied", true)
+  self.Owner.RespawnLocation = self.Model.Spawn
+  self.Owner:LoadCharacter()
 
   self:SetupComponents()
+  self:WaitForExit()
 end
 
 --[[
@@ -92,7 +95,7 @@ function Tycoon:PublishTopic(topicName, ...)
 end
 
 --[[
---Catches a signal withh a specifc topicName and executes the given callback function.
+--Catches a signal with a specifc topicName and executes the given callback function.
 --]]
 function Tycoon:SubscribeTopic(topicName, callback)
   local connection = self._topicEvent.Event:Connect(function(name, ...)
@@ -112,10 +115,22 @@ function Tycoon:constructComponent(sourceInstance, componentScript)
   newComp:Init()
 end
 
+--[
+--Destroy Tycoon once owner leaves
+--]
+function Tycoon:WaitForExit()
+  PlayerManager.PlayerRemoving:Connect(function(player)
+    if self.Owner == player then
+      self:Destroy()
+    end
+  end)
+end
+
 --Destroyes a Tycoon gracefully.
 function Tycoon:Destroy()
   self.Model:Destroy()
   self._topicEvent:Destroy()
+  self._spawn:SetAttribute("Occupied", false)
 end
 
 return Tycoon
