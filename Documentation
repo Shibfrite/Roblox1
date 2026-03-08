@@ -38,13 +38,20 @@ A Bindable event is limited to same-side scripts. (only local or only on the ser
 Services are global singleton objects provided by Roblox.
 Accessed via "game:GetService(ServiceName)".
 
-## Players service
+## Players (service)
+Manages Players instances in game
 The event starting when a player joins is ".PlayerAdded"
-To get all players ":GetPlayers()"
+To get all players: ":GetPlayers()"
+
+## DataStoreService
+Provides persistent storage across sessions.
+To create and get a data store: ":GetDataStore(name)"
+To write to it: ".SetAsync(key, data)"
+To read from it: ".GetAsync(key)"
 
 # Attributes
 Attributes are variables stored in an instance.
-Accessed via "instance:GetAttribute(AttributeName)"
+Accessed via: "instance:GetAttribute(AttributeName)"
 
 # Parts
 Parts are 3D physical objects.

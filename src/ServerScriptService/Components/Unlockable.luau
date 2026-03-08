@@ -1,6 +1,3 @@
---[[
---File responsible for managing unlockable components
---]]
 local Unlockable = {}
 Unlockable.__index = Unlockable
 

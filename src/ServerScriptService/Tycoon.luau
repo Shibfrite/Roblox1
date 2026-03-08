@@ -1,4 +1,3 @@
---Would be nice to get ride of this line, if it's used only once it shouldn't be global
 local tycoonTemplate = game:GetService("ServerStorage").tycoonTemplate
 local tycoonStorage = game:GetService("ServerStorage").tycoonStorage
 local CollectionService = game:GetService("CollectionService")
@@ -6,9 +5,7 @@ local componentFolder = script.Parent.Components
 local PlayerManager = require(script.Parent.PlayerManager)
 local playerManager = require(script.Parent.PlayerManager)
 
---[[
 --Uses the template of a model to construct a copy of it
---]]
 local function NewModel(modelTemplate, cframeOfTemplate)
   local newModel = modelTemplate:Clone()
   newModel:SetPrimaryPartCFrame(cframeOfTemplate)
@@ -19,9 +16,7 @@ end
 local Tycoon = {}
 Tycoon.__index = Tycoon
 
---[[
 --Instantiation of a Tycoon.
---]]
 function Tycoon.new(player, spawnPoint)
   local self = setmetatable({}, Tycoon)
   self.Owner = player
@@ -31,10 +26,8 @@ function Tycoon.new(player, spawnPoint)
   return self
 end
 
---[[
---Initialisation of a Tycoon.
---Creates a Tycoon at a spawn point, making it the Owner's spawnCreates a Tycoon at a spawn point, making it the Owner's spawn.
---]]
+--Initialisation of a Tycoon
+--Creates it at a spawn point
 function Tycoon:Init()
   self.Model = NewModel(tycoonTemplate, self._spawn.CFrame)
   self._spawn:SetAttribute("Occupied", true)
@@ -42,12 +35,18 @@ function Tycoon:Init()
   self.Owner:LoadCharacter()
 
   self:SetupComponents()
+  self:LoadUnlocks()
   self:WaitForExit()
 end
 
---[[
+--Loads all unlocked models
+function Tycoon:LoadUnlocks()
+	for _, id in ipairs(playerManager.GetUnlockIds(self.Owner)) do
+		self:PublishTopic("Button", id)
+	end
+end
+
 --Locks every component with the Unlockable tag and adds the rest to the tycoon.
---]]
 function Tycoon:SetupComponents()
   for _, instance in ipairs(self.Model:GetDescendants()) do
     if CollectionService:HasTag(instance, "Unlockable") then
@@ -58,26 +57,22 @@ function Tycoon:SetupComponents()
   end
 end
 
---[[
 --constructs and locks a component within tycoonStorage
---]]
 function Tycoon:Lock(instance)
   instance.Parent = tycoonStorage
   self:constructComponent(instance, componentFolder.Unlockable)
 end
 
---[[
---Gets a component from the storage to the tycoon, unlocking it.
---]]
+--Creates and unlocks a model
 function Tycoon:Unlock(instance, id)
+  playerManager.AddUnlockId(self.Owner, id)
+
   CollectionService:RemoveTag(instance, "Unlockable")
   self:AddComponents(instance)
   instance.Parent = self.Model
 end
 
---[[
---constructs each component from an instance that has a corresponding tag.
---]]
+--constructs each component from an instance having a corresponding tag.
 function Tycoon:AddComponents(taggedInstance)
   for _, tag in ipairs(CollectionService:GetTags(taggedInstance)) do
     local component = componentFolder:FindFirstChild(tag)
@@ -87,16 +82,12 @@ function Tycoon:AddComponents(taggedInstance)
   end
 end
 
---[[
---Sends a signal with a specific topicName.
---]]
+--Sends a signal
 function Tycoon:PublishTopic(topicName, ...)
   self._topicEvent:Fire(topicName, ...)
 end
 
---[[
---Catches a signal with a specifc topicName and executes the given callback function.
---]]
+--Catches a signal and executes the corresponding function
 function Tycoon:SubscribeTopic(topicName, callback)
   local connection = self._topicEvent.Event:Connect(function(name, ...)
     if name == topicName then
@@ -106,18 +97,14 @@ function Tycoon:SubscribeTopic(topicName, callback)
   return connection
 end
 
---[[
---Instantiate and initialise a component through it's script.
---]]
+--Instantiates and initialises a component through it's script.
 function Tycoon:constructComponent(sourceInstance, componentScript)
   local compModule = require(componentScript)
   local newComp = compModule.new(self, sourceInstance)
   newComp:Init()
 end
 
---[
---Destroy Tycoon once owner leaves
---]
+--Destroys a Tycoon once its owner leaves
 function Tycoon:WaitForExit()
   PlayerManager.PlayerRemoving:Connect(function(player)
     if self.Owner == player then
