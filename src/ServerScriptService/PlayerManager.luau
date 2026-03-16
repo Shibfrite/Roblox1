@@ -142,7 +142,7 @@ end
 function PlayerManager.OnClose()
   --if game:GetService("RunService"):IsStudio() then return end
   for _, player in ipairs(Players:GetPlayers()) do
-    PlayerManager.OnPlayerRemoving(player)
+    task.spawn(PlayerManager.OnPlayerRemoving, player)
   end
 end
 
